@@ -1,5 +1,5 @@
 ---
-title: CRTO Exam Review
+title: Crto Exam Review
 date: 2026-06-27 12:00:00 +0300
 categories: [Certifications, Red Team]
 tags: [Crto, Red-Team, Cobalt-Strike, Opsec, Active-Directory]
