@@ -113,6 +113,13 @@ Default to BOFs over `execute-assembly` whenever a BOF equivalent exists, becaus
 
 Avoid running Rubeus through execute-assembly, since the static signatures on Rubeus binaries are well known and Defender will catch the assembly the moment it lands in memory, so prefer BOF based ticket operations or upload the kirbi file and use ticket use primitives instead of running the full assembly.
 
+### Credential Access
+
+Never kerberoast and never touch LSASS, because both are among the loudest credential access actions you can take in a monitored environment, and the deduction they generate is rarely worth the credential you walk away with. Kerberoasting a service account fires a TGS request pattern that every modern EDR and SIEM has been tuned to alert on for years, especially when the request comes back with RC4 encryption, and a single roast against the wrong account is enough to put your beacon on a defender's screen before you have done anything useful with the hash. Touching LSASS is even worse, since process access requests against lsass.exe are the single most monitored event on a Windows endpoint, and it does not matter whether you are reaching for it through sekurlsa, a comsvcs minidump, or a custom syscall implementation, because the access pattern itself is what gets flagged rather than the specific tool you used to generate it.
+
+> If you genuinely need credentials, exhaust every quieter alternative first, including SYSVOL and GPP password hunting, unconstrained delegation abuse, ADCS misconfigurations, and DPAPI backed credentials, because every one of those paths gives you usable material without generating the telemetry that kerberoasting and LSASS access do.
+{: .prompt-danger }
+
 ### AppLocker
 
 > Spend serious time on the AppLocker challenge in the labs until you can clear it without thinking, because AppLocker bypass is one of those skills that is impossible to fake under pressure, and being smooth on it in the exam saves you both time and OPSEC points.
