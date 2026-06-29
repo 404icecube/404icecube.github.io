@@ -1,6 +1,6 @@
 ---
 title: COAE Exam Review
-date: 2026-06-29 12:00:00 +0300
+date: 2026-06-29 10:00:00 +0300
 categories: [Certifications, AI Security]
 tags: [AI, Offensive-Security, AI-Red-Teaming, AI-Security]
 description: My honest review of the COAE course, labs, and exam.
